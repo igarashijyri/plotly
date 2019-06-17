@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Graphs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @graphs.each do |graph| %>
+      <tr>
+        <td><%= link_to 'Show', graph %></td>
+        <td><%= link_to 'Edit', edit_graph_path(graph) %></td>
+        <td><%= link_to 'Destroy', graph, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<div id="tester" style="width:600px;height:250px;"></div>
+<script>
+	TESTER = document.getElementById('tester');
+	Plotly.plot( TESTER, [{
+	x: [1, 2, 3, 4, 5],
+	y: [1, 2, 4, 8, 16] }], {
+	margin: { t: 0 } } );
+</script>
+<br>
+
+<%= link_to 'New Graph', new_graph_path %>
+<%= javascript_include_tag 'plotly-latest.min' %>
